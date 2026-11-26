@@ -1,0 +1,290 @@
+/* pages/confirm/confirm.wxss */
+
+.root {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 28rpx 28rpx 0;
+}
+
+/* ============ 确认态 ============ */
+.head {
+  padding: 10rpx 8rpx 26rpx;
+}
+
+.head-t {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 1rpx;
+}
+
+.head-s {
+  margin-top: 10rpx;
+  font-size: 25rpx;
+  color: var(--sub);
+}
+
+.sheet {
+  padding: 8rpx 28rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 0;
+  border-bottom: 1rpx solid var(--line);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row-l {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.row-e {
+  font-size: 46rpx;
+  margin-right: 20rpx;
+  line-height: 1;
+}
+
+.row-mid {
+  min-width: 0;
+}
+
+.row-n {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.row-tag {
+  display: inline-block;
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 6rpx;
+  background: var(--soft);
+  color: var(--primary);
+}
+
+.row-r {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.q-btn {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.q-btn.plus {
+  background: var(--primary);
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.q-num {
+  min-width: 56rpx;
+  text-align: center;
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.empty-mini {
+  padding: 60rpx 0;
+  text-align: center;
+  color: var(--sub);
+  font-size: 26rpx;
+}
+
+/* 区块 */
+.block {
+  margin-top: 24rpx;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28rpx;
+}
+
+.block-t {
+  font-size: 27rpx;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 20rpx;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 12rpx 30rpx;
+  margin: 0 14rpx 14rpx 0;
+  border-radius: 999rpx;
+  border: 1rpx solid var(--line);
+  font-size: 26rpx;
+  color: var(--sub);
+}
+
+.chip.on {
+  border-color: var(--primary);
+  background: var(--soft);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.note {
+  width: 100%;
+  min-height: 130rpx;
+  font-size: 27rpx;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.ph {
+  color: #bdbdbd;
+}
+
+.note-count {
+  text-align: right;
+  font-size: 21rpx;
+  color: #c4c4c4;
+}
+
+.spacer {
+  height: 200rpx;
+}
+
+/* 提交条 */
+.foot {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18rpx 28rpx 0;
+  background: linear-gradient(180deg, rgba(246, 244, 241, 0) 0%, var(--bg) 34%);
+}
+
+.foot-btn {
+  height: 96rpx;
+  border-radius: 999rpx;
+  background: var(--primary);
+  color: #fff;
+  font-size: 31rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 26rpx rgba(232, 84, 63, 0.32);
+}
+
+.foot-btn:active {
+  background: var(--primary-dark);
+}
+
+/* ============ 成功态 ============ */
+.ok {
+  padding-top: 70rpx;
+  text-align: center;
+}
+
+.ok-emoji {
+  font-size: 130rpx;
+  line-height: 1;
+}
+
+.ok-title {
+  margin-top: 26rpx;
+  font-size: 52rpx;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 4rpx;
+}
+
+.ok-sub {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: var(--sub);
+}
+
+.ok-list {
+  margin-top: 46rpx;
+  padding: 10rpx 30rpx;
+  text-align: left;
+}
+
+.ok-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--line);
+}
+
+.ok-item:last-child {
+  border-bottom: none;
+}
+
+.ok-e {
+  font-size: 38rpx;
+  margin-right: 16rpx;
+}
+
+.ok-n {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text);
+}
+
+.ok-c {
+  font-size: 25rpx;
+  color: var(--sub);
+}
+
+.ok-note {
+  padding: 20rpx 0;
+  font-size: 25rpx;
+  color: var(--sub);
+  border-top: 1rpx dashed var(--line);
+  margin-top: 6rpx;
+}
+
+.ok-btns {
+  display: flex;
+  margin-top: 46rpx;
+}
+
+.ok-btn {
+  flex: 1;
+  height: 92rpx;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.ok-btn.ghost {
+  background: var(--card);
+  color: var(--text);
+  margin-right: 20rpx;
+}
+
+.ok-btn.primary {
+  background: var(--primary);
+  color: #fff;
+}

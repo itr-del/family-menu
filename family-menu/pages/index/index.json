@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "家里点菜",
+  "backgroundColor": "#F6F4F1",
+  "enablePullDownRefresh": false
+}

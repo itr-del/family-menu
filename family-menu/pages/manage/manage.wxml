@@ -1,0 +1,140 @@
+<!-- pages/manage/manage.wxml · 菜品管理 -->
+<view
+  class="root"
+  style="--primary:{{theme.primary || '#E8543F'}};--primary-dark:{{theme.primaryDark || '#C9402D'}};--soft:{{theme.soft || '#FFF1EE'}};--bg:{{theme.bg || '#F6F4F1'}};--text:{{theme.text || '#2B2B2B'}};--sub:{{theme.sub || '#8A8A8A'}};--card:{{theme.card || '#FFFFFF'}}"
+>
+  <view class="catbar">
+    <scroll-view scroll-x enable-flex show-scrollbar="{{false}}" class="catsc">
+      <view
+        class="c {{activeCat === item.id ? 'on' : ''}}"
+        wx:for="{{cats}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="switchCat"
+        >{{item.emoji}} {{item.name}}</view
+      >
+    </scroll-view>
+  </view>
+
+  <view class="hint">点一行编辑，右侧开关控制是否在点菜页出现</view>
+
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="openEdit">
+      <view class="i-thumb">
+        <image wx:if="{{item.image}}" class="i-thumb-img" src="{{item.image}}" mode="aspectFill" />
+        <text wx:else>{{item.emoji}}</text>
+      </view>
+      <view class="i-mid">
+        <view class="i-name {{item.on === false ? 'off' : ''}}">{{item.name}}</view>
+        <view class="i-sub">
+          <text wx:if="{{item._tagText}}">{{item._tagText}}</text>
+          <text wx:elif="{{item.desc}}">{{item.desc}}</text>
+        </view>
+      </view>
+      <view class="i-right">
+        <switch
+          class="i-switch"
+          checked="{{item.on !== false}}"
+          color="{{theme.primary}}"
+          data-id="{{item.id}}"
+          catchtap="noop"
+          bindchange="toggleOn"
+        />
+        <view class="i-del" data-id="{{item.id}}" catchtap="del" data-name="{{item.name}}">删</view>
+      </view>
+    </view>
+
+    <view class="empty" wx:if="{{list.length === 0}}">
+      <text class="empty-e">🍳</text>
+      <view class="empty-t">这个分类还没菜</view>
+    </view>
+  </view>
+
+  <view class="spacer"></view>
+
+  <view class="foot">
+    <view class="add-btn" bindtap="openNew">＋ 加一道菜</view>
+    <view class="safe-bottom"></view>
+  </view>
+
+  <!-- ============ 编辑弹层 ============ -->
+  <view class="mask" wx:if="{{showEditor}}" bindtap="closeEdit"></view>
+  <view class="editor {{showEditor ? 'up' : ''}}" wx:if="{{showEditor}}">
+    <view class="ed-head">
+      <text class="ed-title">{{form.id ? '改这道菜' : '加一道菜'}}</text>
+      <text class="ed-close" bindtap="closeEdit">✕</text>
+    </view>
+
+    <scroll-view class="ed-body" scroll-y>
+      <view class="fld">
+        <view class="fld-t">菜名</view>
+        <input class="fld-in" value="{{form.name}}" placeholder="比如 红烧肉" bindinput="onInput" data-k="name" maxlength="20" />
+      </view>
+
+      <view class="fld">
+        <view class="fld-t">分类</view>
+        <view class="chips">
+          <text
+            class="chip {{form.cat === c.id ? 'on' : ''}}"
+            wx:for="{{cats}}"
+            wx:key="id"
+            data-v="{{c.id}}"
+            bindtap="pickCat"
+            >{{c.emoji}} {{c.name}}</text
+          >
+        </view>
+      </view>
+
+      <view class="fld" wx:if="{{showDishImage}}">
+        <view class="fld-t">菜品图</view>
+        <view class="img-row">
+          <view class="img-pick" bindtap="pickImage">
+            <image wx:if="{{form.image}}" class="img-pick-img" src="{{form.image}}" mode="aspectFill" />
+            <text wx:else class="img-pick-e">＋</text>
+          </view>
+          <view class="img-tips">
+            <view class="it-1" bindtap="pickImage">拍一张 / 从相册选</view>
+            <view class="it-2" wx:if="{{form.image}}" bindtap="removeImage">移除图片，用 emoji</view>
+            <view class="it-2" wx:else>没图就用下面的 emoji 顶着</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="fld">
+        <view class="fld-t">图标 emoji</view>
+        <view class="chips">
+          <text
+            class="emoji {{form.emoji === e ? 'on' : ''}}"
+            wx:for="{{emojis}}"
+            wx:key="*this"
+            data-v="{{e}}"
+            bindtap="pickEmoji"
+            >{{e}}</text
+          >
+        </view>
+      </view>
+
+      <view class="fld">
+        <view class="fld-t">一句话描述（可空）</view>
+        <input class="fld-in" value="{{form.desc}}" placeholder="比如 肥而不腻，配米饭一绝" bindinput="onInput" data-k="desc" maxlength="30" />
+      </view>
+
+      <view class="fld">
+        <view class="fld-t">标签（用逗号隔开，可空）</view>
+        <input class="fld-in" value="{{formTagText}}" placeholder="比如 招牌,费时40分钟" bindinput="onTagInput" maxlength="40" />
+      </view>
+
+      <view class="fld row-fld">
+        <view class="fld-t no-mb">显示在点菜页</view>
+        <switch checked="{{form.on !== false}}" color="{{theme.primary}}" bindchange="onOn" />
+      </view>
+
+      <view class="ed-pad"></view>
+    </scroll-view>
+
+    <view class="ed-foot">
+      <view class="ed-cancel" bindtap="closeEdit">取消</view>
+      <view class="ed-save" bindtap="save">保存</view>
+    </view>
+  </view>
+</view>

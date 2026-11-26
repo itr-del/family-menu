@@ -1,0 +1,430 @@
+/* pages/shops/shops.wxss */
+
+.root {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.head {
+  padding: 34rpx 32rpx 18rpx;
+}
+
+.head-t {
+  font-size: 42rpx;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 1rpx;
+}
+
+.head-s {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--sub);
+}
+
+.list {
+  padding: 4rpx 28rpx 0;
+}
+
+.shop {
+  display: flex;
+  align-items: flex-start;
+  background: var(--card);
+  border-radius: 22rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.logo {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 22rpx;
+  background: var(--soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-e {
+  font-size: 54rpx;
+  line-height: 1;
+}
+
+.mid {
+  flex: 1;
+  min-width: 0;
+  padding: 2rpx 16rpx 0 20rpx;
+}
+
+.name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  padding: 2rpx 12rpx;
+  margin-right: 8rpx;
+  margin-top: 4rpx;
+  border-radius: 6rpx;
+  background: var(--soft);
+  color: var(--primary);
+}
+
+.addr {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: var(--sub);
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.addr.unset {
+  color: #c4c4c4;
+}
+
+.likes {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: var(--sub);
+}
+
+.heart {
+  color: var(--primary);
+  margin-right: 4rpx;
+}
+
+.ops {
+  flex-shrink: 0;
+  padding-top: 6rpx;
+}
+
+.op {
+  width: 88rpx;
+  height: 50rpx;
+  border-radius: 99rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23rpx;
+  margin-bottom: 12rpx;
+}
+
+.op.nav {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.op.edit {
+  background: var(--soft);
+  color: var(--primary);
+}
+
+.empty {
+  padding: 140rpx 40rpx;
+  text-align: center;
+}
+
+.empty-e {
+  font-size: 90rpx;
+  opacity: 0.55;
+}
+
+.empty-t {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.empty-s {
+  margin-top: 8rpx;
+  font-size: 25rpx;
+  color: var(--sub);
+}
+
+.spacer {
+  height: 190rpx;
+}
+
+.foot {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16rpx 28rpx 0;
+  background: linear-gradient(180deg, rgba(246, 244, 241, 0) 0%, var(--bg) 30%);
+}
+
+.add {
+  height: 92rpx;
+  border-radius: 999rpx;
+  background: var(--primary);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 26rpx rgba(232, 84, 63, 0.3);
+}
+
+/* ============ 弹层 ============ */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.42);
+  z-index: 40;
+}
+
+.editor {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 88vh;
+  background: var(--bg);
+  border-radius: 32rpx 32rpx 0 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ed-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 32rpx 18rpx;
+  background: var(--card);
+}
+
+.ed-title {
+  font-size: 33rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ed-close {
+  font-size: 34rpx;
+  color: var(--sub);
+  padding: 0 10rpx;
+}
+
+.ed-body {
+  flex: 1;
+  padding: 20rpx 28rpx 0;
+  max-height: 60vh;
+}
+
+.fld {
+  background: var(--card);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.fld-t {
+  font-size: 24rpx;
+  color: var(--sub);
+  margin-bottom: 16rpx;
+}
+
+.fld-in {
+  font-size: 29rpx;
+  color: var(--text);
+  height: 56rpx;
+  line-height: 56rpx;
+}
+
+/* logo 上传 */
+.logo-row {
+  display: flex;
+  align-items: center;
+}
+
+.logo-pick {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 24rpx;
+  background: var(--bg);
+  border: 2rpx dashed #d8d8d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.logo-pick-img {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-pick-e {
+  font-size: 60rpx;
+  color: #c4c4c4;
+  line-height: 1;
+}
+
+.logo-tips {
+  padding-left: 24rpx;
+}
+
+.lt-1 {
+  font-size: 27rpx;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.lt-2 {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: var(--sub);
+}
+
+/* 位置 */
+.loc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80rpx;
+}
+
+.loc-l {
+  flex: 1;
+  padding-right: 20rpx;
+}
+
+.loc-a {
+  font-size: 27rpx;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.loc-c {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: var(--primary);
+}
+
+.loc-btn {
+  flex-shrink: 0;
+  padding: 12rpx 28rpx;
+  border-radius: 99rpx;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 25rpx;
+  font-weight: 600;
+}
+
+/* chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 10rpx 22rpx;
+  margin: 0 12rpx 12rpx 0;
+  border-radius: 999rpx;
+  border: 1rpx solid var(--line);
+  font-size: 25rpx;
+  color: var(--sub);
+}
+
+.chip.on {
+  border-color: var(--primary);
+  background: var(--soft);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.emoji {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 14rpx;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin: 0 12rpx 12rpx 0;
+}
+
+.emoji.on {
+  background: var(--soft);
+  box-shadow: 0 0 0 3rpx var(--primary) inset;
+}
+
+.ed-pad {
+  height: 20rpx;
+}
+
+.ed-foot {
+  display: flex;
+  padding: 18rpx 28rpx;
+  background: var(--card);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 18rpx);
+}
+
+.ed-del {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 999rpx;
+  background: #f7f7f7;
+  color: #a8a8a8;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14rpx;
+}
+
+.ed-cancel {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 999rpx;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 29rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14rpx;
+}
+
+.ed-save {
+  flex: 2;
+  height: 88rpx;
+  border-radius: 999rpx;
+  background: var(--primary);
+  color: #fff;
+  font-size: 29rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

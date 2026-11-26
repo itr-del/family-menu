@@ -1,0 +1,14 @@
+{
+  "name": "family-menu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "家庭点菜小程序 · 家常菜做成菜单，家人扫码点，掌勺的照着做",
+  "scripts": {
+    "check": "node preflight.js",
+    "upload": "node upload.js upload",
+    "preview": "node upload.js preview"
+  },
+  "dependencies": {
+    "miniprogram-ci": "^2.1.31"
+  }
+}

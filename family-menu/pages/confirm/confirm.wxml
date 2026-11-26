@@ -1,0 +1,97 @@
+<!-- pages/confirm/confirm.wxml · 确认与提交 -->
+<view
+  class="root"
+  style="--primary:{{theme.primary || '#E8543F'}};--primary-dark:{{theme.primaryDark || '#C9402D'}};--soft:{{theme.soft || '#FFF1EE'}};--bg:{{theme.bg || '#F6F4F1'}};--text:{{theme.text || '#2B2B2B'}};--sub:{{theme.sub || '#8A8A8A'}};--card:{{theme.card || '#FFFFFF'}}"
+>
+  <!-- ================= 提交成功态 ================= -->
+  <block wx:if="{{done}}">
+    <view class="ok">
+      <view class="ok-emoji">🍽</view>
+      <view class="ok-title">{{text.submitted}}</view>
+      <view class="ok-sub">已经送到「{{family.chef}}」那边了</view>
+
+      <view class="ok-list card">
+        <view class="ok-item" wx:for="{{submitted}}" wx:key="id">
+          <text class="ok-e">{{item.emoji}}</text>
+          <text class="ok-n">{{item.name}}</text>
+          <text class="ok-c">×{{item.count}}</text>
+        </view>
+        <view class="ok-note" wx:if="{{submittedNote}}">{{submittedNote}}</view>
+      </view>
+
+      <view class="ok-btns">
+        <view class="ok-btn ghost" bindtap="backHome">回首页</view>
+        <view class="ok-btn primary" bindtap="goOrders">看看点过的</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ================= 确认态 ================= -->
+  <block wx:else>
+    <view class="head">
+      <view class="head-t">今天的点单</view>
+      <view class="head-s">{{by}} · {{date}} · 共 {{total}} 道</view>
+    </view>
+
+    <!-- 菜品清单 -->
+    <view class="card sheet">
+      <view class="row" wx:for="{{items}}" wx:key="id">
+        <view class="row-l">
+          <text class="row-e">{{item.emoji}}</text>
+          <view class="row-mid">
+            <view class="row-n">{{item.name}}</view>
+            <view class="row-tag" wx:if="{{item.spicy}}">{{item.spicy}}</view>
+          </view>
+        </view>
+        <view class="row-r">
+          <view class="q-btn" data-id="{{item.id}}" catchtap="minus">−</view>
+          <text class="q-num">{{item.count}}</text>
+          <view class="q-btn plus" data-id="{{item.id}}" catchtap="plus">＋</view>
+        </view>
+      </view>
+
+      <view class="empty-mini" wx:if="{{items.length === 0}}">什么都没点</view>
+    </view>
+
+    <!-- 份量 -->
+    <view class="block" wx:if="{{features.showPersonPicker}}">
+      <view class="block-t">份量</view>
+      <view class="chips">
+        <text
+          class="chip {{persons === p ? 'on' : ''}}"
+          wx:for="{{personList}}"
+          wx:key="*this"
+          data-v="{{p}}"
+          bindtap="pickPerson"
+          >{{p}}</text
+        >
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="block" wx:if="{{features.showNote}}">
+      <view class="block-t">跟掌勺的说两句</view>
+      <textarea
+        class="note"
+        value="{{note}}"
+        placeholder="{{text.notePlaceholder}}"
+        placeholder-class="ph"
+        maxlength="120"
+        bindinput="onNote"
+        auto-height
+      />
+      <view class="note-count">{{note.length}}/120</view>
+    </view>
+
+    <view class="spacer"></view>
+
+    <!-- 提交 -->
+    <view class="foot">
+      <view class="foot-btn" bindtap="submit">
+        <text wx:if="{{submitting}}">提交中…</text>
+        <text wx:else>{{text.submit}} · {{total}} 道</text>
+      </view>
+      <view class="safe-bottom"></view>
+    </view>
+  </block>
+</view>

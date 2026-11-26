@@ -1,0 +1,114 @@
+<!-- pages/settings/settings.wxml · 个性化设置 -->
+<view
+  class="root"
+  style="--primary:{{theme.primary || '#E8543F'}};--primary-dark:{{theme.primaryDark || '#C9402D'}};--soft:{{theme.soft || '#FFF1EE'}};--bg:{{theme.bg || '#F6F4F1'}};--text:{{theme.text || '#2B2B2B'}};--sub:{{theme.sub || '#8A8A8A'}};--card:{{theme.card || '#FFFFFF'}}"
+>
+  <!-- ============ 家庭信息 ============ -->
+  <view class="grp">
+    <view class="grp-t">家庭</view>
+    <view class="box">
+      <view class="line">
+        <text class="lb">名字</text>
+        <input class="in" value="{{form.familyName}}" data-k="familyName" bindinput="onInput" maxlength="16" placeholder="比如 老王家的小饭桌" />
+      </view>
+      <view class="line">
+        <text class="lb">一句话</text>
+        <input class="in" value="{{form.slogan}}" data-k="slogan" bindinput="onInput" maxlength="24" placeholder="今天想吃什么，点给我" />
+      </view>
+      <view class="line">
+        <text class="lb">掌勺人</text>
+        <input class="in" value="{{form.chef}}" data-k="chef" bindinput="onInput" maxlength="10" placeholder="谁做饭" />
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 成员 ============ -->
+  <view class="grp">
+    <view class="grp-t">家里有谁 <text class="grp-s">点菜时选「我是谁」用</text></view>
+    <view class="box pad">
+      <view class="chips">
+        <view class="mem" wx:for="{{form.members}}" wx:key="*this" data-v="{{item}}" bindtap="delMember">
+          {{item}}<text class="mem-x">✕</text>
+        </view>
+        <view class="mem add" bindtap="addMember">＋ 加人</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 主题色 ============ -->
+  <view class="grp">
+    <view class="grp-t">主题色 <text class="grp-s">点一下立刻换</text></view>
+    <view class="box pad">
+      <view class="colors">
+        <view
+          class="col {{theme.primary === c.primary ? 'on' : ''}}"
+          wx:for="{{colors}}"
+          wx:key="primary"
+          data-i="{{index}}"
+          bindtap="pickColor"
+          style="background:{{item.primary}}"
+        >
+          <text class="col-tick" wx:if="{{theme.primary === c.primary}}">✓</text>
+          <text class="col-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 功能开关 ============ -->
+  <view class="grp">
+    <view class="grp-t">功能</view>
+    <view class="box">
+      <view class="line sw" wx:for="{{featureList}}" wx:key="key">
+        <view class="sw-l">
+          <text class="lb2">{{item.name}}</text>
+          <text class="sw-d">{{item.desc}}</text>
+        </view>
+        <switch checked="{{form.features[item.key]}}" color="{{theme.primary}}" data-k="{{item.key}}" bindchange="onFeature" />
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 数据 ============ -->
+  <view class="grp">
+    <view class="grp-t">数据</view>
+    <view class="box">
+      <view class="line">
+        <text class="lb">模式</text>
+        <text class="val">{{modeText}}</text>
+      </view>
+      <view class="line tap" bindtap="resetMenu">
+        <text class="lb">恢复默认菜单</text>
+        <text class="val">›</text>
+      </view>
+      <view class="line tap" bindtap="toggleOrders">
+        <text class="lb">点过的单</text>
+        <text class="val">{{showOrders ? '收起' : '展开'}} ›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史点单 -->
+  <view class="grp" wx:if="{{showOrders}}">
+    <view class="box pad">
+      <view class="ord" wx:for="{{orders}}" wx:key="_id">
+        <view class="ord-h">
+          <text class="ord-by">{{item.by}}</text>
+          <text class="ord-t">{{item.timeText}}</text>
+        </view>
+        <view class="ord-items">
+          <text class="ord-i" wx:for="{{item.items}}" wx:for-item="d" wx:key="id">{{d.emoji}}{{d.name}}×{{d.count}}</text>
+        </view>
+        <view class="ord-note" wx:if="{{item.note}}">「{{item.note}}」</view>
+      </view>
+      <view class="ord-empty" wx:if="{{orders.length === 0}}">还没人点过</view>
+    </view>
+  </view>
+
+  <view class="spacer"></view>
+
+  <view class="foot">
+    <view class="save" bindtap="save">保存设置</view>
+    <view class="safe-bottom"></view>
+  </view>
+</view>

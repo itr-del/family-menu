@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/confirm/confirm",
+    "pages/manage/manage",
+    "pages/shops/shops",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#E8543F",
+    "navigationBarTitleText": "家里点菜",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F6F4F1",
+    "backgroundTextStyle": "dark"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用来标注常去的餐厅位置，方便导航过去"
+    }
+  },
+  "requiredPrivateInfos": ["chooseLocation", "getLocation"],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

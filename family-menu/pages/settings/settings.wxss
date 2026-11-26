@@ -1,0 +1,238 @@
+/* pages/settings/settings.wxss */
+
+.root {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 10rpx 28rpx 0;
+}
+
+.grp {
+  margin-top: 26rpx;
+}
+
+.grp-t {
+  font-size: 25rpx;
+  color: var(--sub);
+  padding: 0 8rpx 14rpx;
+  font-weight: 500;
+}
+
+.grp-s {
+  font-size: 21rpx;
+  color: #b9b9b9;
+  margin-left: 10rpx;
+}
+
+.box {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.box.pad {
+  padding: 24rpx;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 28rpx;
+  border-bottom: 1rpx solid var(--line);
+  min-height: 96rpx;
+}
+
+.line:last-child {
+  border-bottom: none;
+}
+
+.line.tap:active {
+  background: #fafafa;
+}
+
+.lb {
+  font-size: 28rpx;
+  color: var(--text);
+  flex-shrink: 0;
+  width: 150rpx;
+}
+
+.in {
+  flex: 1;
+  text-align: right;
+  font-size: 28rpx;
+  color: var(--text);
+}
+
+.val {
+  font-size: 26rpx;
+  color: var(--sub);
+}
+
+/* 成员 */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mem {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 22rpx;
+  margin: 0 14rpx 14rpx 0;
+  border-radius: 999rpx;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.mem-x {
+  font-size: 20rpx;
+  margin-left: 10rpx;
+  opacity: 0.6;
+}
+
+.mem.add {
+  background: transparent;
+  border: 1rpx dashed #d5d5d5;
+  color: var(--sub);
+  font-weight: 400;
+}
+
+/* 主题色 */
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  position: relative;
+  width: 128rpx;
+  height: 96rpx;
+  border-radius: 16rpx;
+  margin: 0 16rpx 16rpx 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10rpx;
+}
+
+.col.on {
+  box-shadow: 0 0 0 4rpx #fff, 0 0 0 8rpx rgba(0, 0, 0, 0.14);
+}
+
+.col-tick {
+  position: absolute;
+  top: 8rpx;
+  right: 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.col-name {
+  font-size: 18rpx;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* 开关行 */
+.sw {
+  align-items: flex-start;
+}
+
+.sw-l {
+  flex: 1;
+  padding-right: 20rpx;
+}
+
+.lb2 {
+  font-size: 28rpx;
+  color: var(--text);
+}
+
+.sw-d {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: var(--sub);
+}
+
+/* 历史单 */
+.ord {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--line);
+}
+
+.ord:last-child {
+  border-bottom: none;
+}
+
+.ord-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.ord-by {
+  font-size: 27rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ord-t {
+  font-size: 21rpx;
+  color: #bbb;
+}
+
+.ord-items {
+  margin-top: 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ord-i {
+  font-size: 23rpx;
+  color: var(--sub);
+  margin-right: 16rpx;
+  line-height: 1.7;
+}
+
+.ord-note {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: var(--primary);
+}
+
+.ord-empty {
+  padding: 50rpx 0;
+  text-align: center;
+  font-size: 25rpx;
+  color: var(--sub);
+}
+
+.spacer {
+  height: 190rpx;
+}
+
+.foot {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16rpx 28rpx 0;
+  background: linear-gradient(180deg, rgba(246, 244, 241, 0) 0%, var(--bg) 30%);
+}
+
+.save {
+  height: 92rpx;
+  border-radius: 999rpx;
+  background: var(--primary);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 26rpx rgba(232, 84, 63, 0.3);
+}

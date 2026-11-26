@@ -1,0 +1,149 @@
+<!-- pages/index/index.wxml · 点菜首页 -->
+<view
+  class="root"
+  style="--primary:{{theme.primary || '#E8543F'}};--primary-dark:{{theme.primaryDark || '#C9402D'}};--soft:{{theme.soft || '#FFF1EE'}};--bg:{{theme.bg || '#F6F4F1'}};--text:{{theme.text || '#2B2B2B'}};--sub:{{theme.sub || '#8A8A8A'}};--card:{{theme.card || '#FFFFFF'}}"
+>
+  <!-- ============ 头部 ============ -->
+  <view class="hero" style="padding-top:{{statusBar + 12}}px">
+    <view class="glow"></view>
+
+    <view class="hero-top">
+      <view class="who" bindtap="pickMe">
+        <view class="avatar">{{meAvatar}}</view>
+        <text class="who-name">{{me || '我是谁'}}</text>
+        <text class="who-arrow">›</text>
+      </view>
+      <view class="hero-actions">
+        <view class="hero-btn" bindtap="goManage">菜品</view>
+        <view class="hero-btn" bindtap="goSettings">设置</view>
+      </view>
+    </view>
+
+    <view class="hero-main">
+      <view class="hero-title">{{family.name}}</view>
+      <view class="hero-sub" wx:if="{{family.slogan}}">{{family.slogan}}</view>
+    </view>
+
+    <view class="hero-foot">
+      <view class="chef-chip">
+        <text class="chef-dot"></text>
+        <text>今日掌勺 · {{family.chef}}</text>
+      </view>
+      <text class="hero-date">{{date}}</text>
+    </view>
+  </view>
+
+  <!-- 数据加载失败提示 -->
+  <view class="err-bar" wx:if="{{loadError}}">
+    <view class="err-l">
+      <view class="err-t">数据没加载出来</view>
+      <view class="err-d">{{loadError}}</view>
+    </view>
+    <view class="err-r" catchtap="refresh">重试</view>
+  </view>
+
+  <!-- ============ 大家喜欢的餐厅 ============ -->
+  <block wx:if="{{features.showShops && shops.length}}">
+    <view class="sec-head">
+      <view class="sec-t">{{shopsCfg.title}}</view>
+      <view class="sec-more" catchtap="goShops">全部 ›</view>
+    </view>
+    <scroll-view class="shop-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+      <view
+        class="shop-card"
+        wx:for="{{shops}}"
+        wx:key="id"
+        data-i="{{index}}"
+        bindtap="openShop"
+      >
+        <view class="sc-logo">
+          <image wx:if="{{item.logoImage}}" class="sc-img" src="{{item.logoImage}}" mode="aspectFill" />
+          <text wx:else class="sc-e">{{item.logo}}</text>
+        </view>
+        <view class="sc-name">{{item.name}}</view>
+        <view class="sc-info">{{item.tagsText || item.address || '还没标位置'}}</view>
+      </view>
+    </scroll-view>
+  </block>
+
+  <!-- ============ 分类 ============ -->
+  <scroll-view class="cats" scroll-x enable-flex show-scrollbar="{{false}}">
+    <view
+      class="cat {{activeCat === item.id ? 'on' : ''}}"
+      wx:for="{{cats}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="switchCat"
+    >
+      <text class="cat-e">{{item.emoji}}</text>
+      <text class="cat-n">{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- ============ 菜品列表 ============ -->
+  <view class="list">
+    <block wx:if="{{loading}}">
+      <view class="skeleton" wx:for="{{[1,2,3]}}" wx:key="*this"></view>
+    </block>
+
+    <block wx:elif="{{list.length}}">
+      <view class="dish" wx:for="{{list}}" wx:key="id">
+        <view class="thumb">
+          <image wx:if="{{item.image}}" class="thumb-img" src="{{item.image}}" mode="aspectFill" />
+          <text wx:else class="thumb-e">{{item.emoji}}</text>
+        </view>
+
+        <view class="info">
+          <view class="d-name">{{item.name}}</view>
+
+          <view class="d-tags" wx:if="{{features.showTags && item.tags && item.tags.length}}">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+          </view>
+
+          <view class="d-desc" wx:if="{{features.showDishDesc && item.desc}}">{{item.desc}}</view>
+
+          <!-- 选中后才出现辣度选择，避免列表太挤 -->
+          <view class="d-spicy" wx:if="{{features.showSpicy && cart[item.id]}}">
+            <text
+              class="sp {{cart[item.id].spicy === s ? 'on' : ''}}"
+              wx:for="{{spicyList}}"
+              wx:for-item="s"
+              wx:key="*this"
+              data-id="{{item.id}}"
+              data-v="{{s}}"
+              catchtap="pickSpicy"
+              >{{s}}</text
+            >
+          </view>
+        </view>
+
+        <view class="stepper" wx:if="{{features.allowQuickAdd}}">
+          <block wx:if="{{cart[item.id]}}">
+            <view class="st-btn minus" data-id="{{item.id}}" catchtap="minus">−</view>
+            <text class="st-num">{{cart[item.id].count}}</text>
+          </block>
+          <view class="st-btn plus" data-id="{{item.id}}" catchtap="plus">＋</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty" wx:else>
+      <text class="empty-e">{{emptyEmoji}}</text>
+      <view class="empty-t">{{text.emptyDish}}</view>
+      <view class="empty-s">{{text.emptyDishTip}}</view>
+      <view class="empty-btn btn-ghost" bindtap="goManage">去加菜</view>
+    </view>
+  </view>
+
+  <view class="bar-holder" wx:if="{{total > 0}}"></view>
+
+  <!-- ============ 底部购物车 ============ -->
+  <view class="cart-bar" wx:if="{{total > 0}}">
+    <view class="cb-left">
+      <text class="cb-num">{{total}}</text>
+      <text class="cb-txt">{{text.cart}}</text>
+      <text class="cb-clear" catchtap="clearCart">{{text.clear}}</text>
+    </view>
+    <view class="cb-btn" catchtap="goConfirm">{{text.submit}}</view>
+  </view>
+</view>

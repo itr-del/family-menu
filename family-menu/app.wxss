@@ -1,0 +1,78 @@
+/* app.wxss —— 全局基础样式与主题变量默认值 */
+page {
+  /* 默认主题，会被页面根节点的 inline style 覆盖 */
+  --primary: #e8543f;
+  --primary-dark: #c9402d;
+  --soft: #fff1ee;
+  --bg: #f6f4f1;
+  --card: #ffffff;
+  --text: #2b2b2b;
+  --sub: #8a8a8a;
+  --line: #edebe7;
+  --radius: 20rpx;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+view,
+text,
+scroll-view {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  line-height: normal;
+  font-size: inherit;
+  color: inherit;
+}
+
+button::after {
+  border: none;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999rpx;
+  text-align: center;
+  font-weight: 600;
+}
+
+.btn-ghost {
+  background: var(--soft);
+  color: var(--primary);
+  border-radius: 999rpx;
+  text-align: center;
+  font-weight: 600;
+}
+
+.safe-bottom {
+  height: calc(env(safe-area-inset-bottom) + 20rpx);
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
