@@ -7,6 +7,7 @@
 ![Mode](https://img.shields.io/badge/数据-local%20%2F%20cloud-blue?style=flat-square)
 ![Status](https://img.shields.io/badge/状态-体验版运行中-orange?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Version](https://img.shields.io/badge/源码-v3%20(2026--11--26)-lightgrey?style=flat-square)
 
 ---
 
@@ -104,7 +105,7 @@
 ## 项目结构
 
 ```
-family-menu/
+family-menu/                        # ← 导入开发者工具时选这一层
 ├── app.js / app.json / app.wxss    # 全局配置、主题、权限声明
 ├── project.config.json
 ├── sitemap.json                    # 禁止被微信搜索（家庭自用）
@@ -122,12 +123,13 @@ family-menu/
 │   ├── manage/                     # 菜品管理（增删改、上传图）
 │   ├── shops/                      # 餐厅（logo、地图标点、导航）
 │   └── settings/                   # 家庭信息、成员、主题色、功能开关
-├── images/                         # 可选：批量预置的菜品图
-└── tools/                          # 电脑上运行，不导入开发者工具
-    ├── preflight.js                # 上传前自检
-    ├── upload.js                   # miniprogram-ci 命令行上传
-    ├── package.json
-    └── README.md
+└── images/                         # 可选：批量预置的菜品图
+
+tools/                              # 电脑上跑的 Node 脚本，不进 family-menu/
+├── preflight.js                    # 上传前自检
+├── upload.js                       # miniprogram-ci 命令行上传
+├── package.json
+└── README.md
 ```
 
 > ⚠️ `tools/` 里的脚本是 Node 程序（首行 `#!/usr/bin/env node`），**不要放进小程序项目目录**，否则开发者工具会把它们当页面 JS 编译并报语法错。
