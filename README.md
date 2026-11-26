@@ -8,8 +8,6 @@
 ![Status](https://img.shields.io/badge/状态-体验版运行中-orange?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-> **仓库状态（2026-11-26）**：本仓库当前只包含项目设计文档，小程序源码尚未上传。代码可直接放入 `family-menu/` 目录后按下方「快速开始」运行。
-
 ---
 
 ## 为什么做这个
